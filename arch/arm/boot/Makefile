@@ -37,8 +37,8 @@ DTB_LIST := $(addsuffix .dtb,$(DTB_NAMES))
 else
 DTB_LIST := $(dtb-y)
 endif
-DTB_OBJS := $(addprefix $(obj)/dts/msm8909w-tunny/,$(DTB_LIST))
-
+#DTB_OBJS := $(addprefix $(obj)/dts/msm8909w-tunny/,$(DTB_LIST))
+DTB_OBJS := $(addprefix $(obj)/dts/msm8909w-platy/,$(DTB_LIST))
 ifeq ($(CONFIG_XIP_KERNEL),y)
 
 $(obj)/xipImage: vmlinux FORCE

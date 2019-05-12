@@ -298,7 +298,8 @@ ifeq ($(CONFIG_USE_OF),y)
 KBUILD_DTBS := dtbs
 endif
 
-DTSSUBDIR := msm8909w-tunny
+#DTSSUBDIR := msm8909w-tunny
+DTSSUBDIR := msm8909w-platy
 
 all:	$(KBUILD_IMAGE) $(KBUILD_DTBS)
 
