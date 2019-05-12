@@ -1000,6 +1000,15 @@ int32_t qpnp_adc_tdkntcg_therm(struct qpnp_vadc_chip *chip,
 }
 EXPORT_SYMBOL(qpnp_adc_tdkntcg_therm);
 
+unsigned int batt_hot_threshold	=	0;
+unsigned int batt_cold_threshold	=	0;
+void set_batt_hot_cold_threshold(unsigned int vbatt_hot_threshold,
+	unsigned int vbatt_cold_threshold)
+{
+	batt_hot_threshold	=	vbatt_hot_threshold;
+	batt_cold_threshold	=	vbatt_cold_threshold;
+}
+
 int32_t qpnp_adc_scale_batt_therm(struct qpnp_vadc_chip *chip,
 		int32_t adc_code,
 		const struct qpnp_adc_properties *adc_properties,
@@ -1013,11 +1022,12 @@ int32_t qpnp_adc_scale_batt_therm(struct qpnp_vadc_chip *chip,
 
 	adc_chan_result->measurement = bat_voltage;
 
+	pr_debug("[default]set battery thermal adc scale, adcmap_btm_threshold_0_60\n");
 	return qpnp_adc_map_temp_voltage(
-			adcmap_btm_threshold,
-			ARRAY_SIZE(adcmap_btm_threshold),
-			bat_voltage,
-			&adc_chan_result->physical);
+		adcmap_btm_threshold,
+		ARRAY_SIZE(adcmap_btm_threshold),
+		bat_voltage,
+		&adc_chan_result->physical);
 }
 EXPORT_SYMBOL(qpnp_adc_scale_batt_therm);
 
